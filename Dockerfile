@@ -47,6 +47,11 @@ RUN rm -rf /yapi/scripts
 ######## 镜像 ########
 FROM node:12.16.3-alpine3.11
 
+RUN apk add --update --no-cache ca-certificates curl bash \
+  && update-ca-certificates
+
+ENV YAPI_VERSION=1.12.0
+
 WORKDIR /yapi
 
 COPY --from=builder /yapi .
